@@ -16,7 +16,7 @@ const HomeServices = () => {
                 <h1 className="text-center">Our <span style={{ color: "#1d7871", fontWeight: "700" }}>Services</span></h1>
                 <div className="row services-card">
                     {
-                        services.slice(0,3).map(homeService => <HomeService
+                        services.slice(0,6).map(homeService => <HomeService
                             key={homeService.id}
                             service = {homeService}
                         ></HomeService>)
