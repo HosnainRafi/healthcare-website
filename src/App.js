@@ -10,6 +10,8 @@ import Header from './Pages/Shared/Header/Header';
 import Footer from './Pages/Shared/Footer/Footer';
 import Services from './Pages/Services/Services';
 import Doctors from './Pages/Doctors/Doctors';
+import DoctorDetails from './Pages/Doctors/DoctorDetails/DoctorDetails';
+import ServiceDetails from './Pages/Services/ServiceDetails/ServiceDetails';
 
 function App() {
   return (
@@ -26,9 +28,16 @@ function App() {
           <Route path="/services">
             <Services></Services>
           </Route>
+          <Route path="/service/:id">
+            <ServiceDetails></ServiceDetails>
+          </Route>
           <Route path="/doctors">
             <Doctors></Doctors>
           </Route>
+          <Route path="/doctor/:id">
+            <DoctorDetails></DoctorDetails>
+          </Route>
+
           <Route path="/login">
             <Login></Login>
           </Route>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const HomeDoctor = (props) => {
     const { id, name, work, details, img } = props.doctor;
@@ -11,7 +12,7 @@ const HomeDoctor = (props) => {
                     <h5>{work}</h5>
                     <h3 class="card-title">{name}</h3>
                     <p class="card-text">{details}</p>
-                    <button className="btn btn-success">See Details</button>
+                    <Link to={`/doctor/${id}`}><button className="btn btn-primary">See Details</button></Link>
                 </div>
             </div>
         </div>
