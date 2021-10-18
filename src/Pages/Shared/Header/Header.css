@@ -1,8 +1,9 @@
 .navbar-container{
-    position: sticky !important;
+    position: sticky;
     position: -webkit-sticky !important;
     top: 1px!important;
     font-weight: 600;
+    visibility: visible;
 }
 .navbar{
     background-color: #fff;

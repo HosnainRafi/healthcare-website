@@ -1,8 +1,6 @@
 import React from 'react';
-import './Service.css'
 
-
-const Service = (props) => {
+const HomeService = (props) => {
 
     const { id, name, img, details } = props.service;
 
@@ -20,4 +18,4 @@ const Service = (props) => {
     );
 };
 
-export default Service;
+export default HomeService;
