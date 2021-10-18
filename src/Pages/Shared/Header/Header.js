@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Navbar } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
-import logo from '../../../images/logo1.png'
+import logo from '../../../images/logo2.png'
 import './Header.css'
 
 
@@ -13,7 +13,7 @@ const Header = () => {
                     <Navbar.Brand><NavLink to="/home" className="text-decoration-none p-3 navlink" activeStyle={{
                             fontWeight: "bold",
                             color: "rgb(255, 173, 67)"
-                        }} ><img src={logo} width="100px" alt="" />Medicare</NavLink></Navbar.Brand>
+                        }} ><img src={logo} width="250px" alt="" /></NavLink></Navbar.Brand>
                     <Navbar.Toggle />
                     <Navbar.Collapse id="navbarScroll" className="justify-content-end">
                         <NavLink className="text-decoration-none p-3 navlink" activeStyle={{
