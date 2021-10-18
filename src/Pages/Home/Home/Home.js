@@ -7,10 +7,8 @@ import Banner from '../Banner/Banner';
 const Home = () => {
     return (
         <div>
-            <Header></Header>
             <Banner></Banner>
             <AboutUs></AboutUs>
-            <Footer></Footer>
         </div>
     );
 };
