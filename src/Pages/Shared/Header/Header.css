@@ -1,0 +1,13 @@
+.navbar-container{
+    position: sticky !important;
+    position: -webkit-sticky !important;
+    top: 1px!important;
+    font-weight: 600;
+}
+.navbar{
+    background-color: #fff;
+    opacity: .8;
+}
+.navlink{
+    color: black;
+}

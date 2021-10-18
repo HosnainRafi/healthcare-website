@@ -1,0 +1,22 @@
+.banner{
+    background-image: url('../../../images/banner1.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+.banner h1{
+    font-size: 60px;
+    font-weight: 700;
+    margin: 50px auto 100px auto;
+}
+.banner-description{
+    font-size: 20px ;
+    font-weight: 300;
+    margin-bottom: 50px;
+}
+.banner-details{
+    margin-bottom: 200px;
+}
+.btn-customize{
+    background-color: #1d7871!important;
+}
