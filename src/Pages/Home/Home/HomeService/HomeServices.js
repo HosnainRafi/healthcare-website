@@ -9,6 +9,7 @@ const HomeServices = () => {
     const handleServices = () => {
         history.push('/services')
     }
+    
     return (
         <div>
             <div className=" services">

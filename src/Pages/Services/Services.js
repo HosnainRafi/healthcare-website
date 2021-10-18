@@ -1,5 +1,4 @@
 import React from 'react';
-import { useHistory } from 'react-router';
 import useServices from '../../Hooks/useServices';
 import Service from './Service/Service';
 import './Services.css'
@@ -7,10 +6,6 @@ import './Services.css'
 
 const Services = () => {
     const { services } = useServices();
-    const history = useHistory();
-    const handleServices = () => {
-        history.push('/services')
-    }
 
     return (
         <div className=" services">
@@ -23,9 +18,6 @@ const Services = () => {
                             service = {service}
                         ></Service> )
                     }
-                </div>
-                <div className=" mx-auto text-center">
-                
                 </div>
                 
             </div>

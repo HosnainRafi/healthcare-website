@@ -1,9 +1,9 @@
 import React from 'react';
 import AboutUs from '../../AboutUs/AboutUs';
 import Doctors from '../../Doctors/Doctors';
-import Services from '../../Services/Services';
 import Banner from '../Banner/Banner';
 import Team from '../Team/Team';
+import HomeDoctors from './HomeDoctors/HomeDoctors';
 import HomeServices from './HomeService/HomeServices';
 
 
@@ -12,7 +12,7 @@ const Home = () => {
         <div>
             <Banner></Banner>
             <Team></Team>
-            <Doctors></Doctors>
+            <HomeDoctors></HomeDoctors>
             <HomeServices></HomeServices>
             <AboutUs></AboutUs>
         </div>
