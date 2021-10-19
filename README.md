@@ -13,4 +13,9 @@ Used: [React](http://www.react.com/ ) ,  [Bootstrap](http://getbootstrap.com) , 
     * Login System
 
 
+* About the Projects
+    *This is a healthcare website
+    * We can find the Doctor information on this site
+    * You can also find the hospital information and about their services
+    * This website also tells us their location contact information
 
