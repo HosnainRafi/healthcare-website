@@ -13,6 +13,7 @@ import Doctors from './Pages/Doctors/Doctors';
 import DoctorDetails from './Pages/Doctors/DoctorDetails/DoctorDetails';
 import ServiceDetails from './Pages/Services/ServiceDetails/ServiceDetails';
 import AuthProvider from './Context/AuthProvider';
+import PrivateRoute from './Pages/Login/PrivateRoute/PrivateRoute';
 
 function App() {
   return (
@@ -30,15 +31,15 @@ function App() {
             <Route path="/services">
               <Services></Services>
             </Route>
-            <Route path="/service/:id">
+            <PrivateRoute path="/service/:id">
               <ServiceDetails></ServiceDetails>
-            </Route>
-            <Route path="/doctors">
+            </PrivateRoute>
+            <PrivateRoute path="/doctors">
               <Doctors></Doctors>
-            </Route>
-            <Route path="/doctor/:id">
+            </PrivateRoute>
+            <PrivateRoute path="/doctor/:id">
               <DoctorDetails></DoctorDetails>
-            </Route>
+            </PrivateRoute>
 
             <Route path="/login">
               <Login></Login>
@@ -46,9 +47,9 @@ function App() {
             <Route exact path="/about">
               <AboutUs></AboutUs>
             </Route>
-            <Route exact path="/contact">
+            <PrivateRoute exact path="/contact">
               <ContactUs></ContactUs>
-            </Route>
+            </PrivateRoute>
             <Route path="*">
               <NotFound></NotFound>
             </Route>

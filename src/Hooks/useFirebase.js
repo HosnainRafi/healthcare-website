@@ -13,12 +13,12 @@ const useFirebase = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [image,setImage] = useState('');
 
     const auth = getAuth();
     const googleProvider = new GoogleAuthProvider();
     const githubProvider = new GithubAuthProvider();
 
-    // checking if initial state is getting user from useAuth(). if not then loading forever untill getting value
     const [isLoading, setIsLoading] = useState(true);
 
     const getGoogleSignIn = () => {
@@ -68,10 +68,12 @@ const useFirebase = () => {
     }
     const getEmailSignIn = () => {
         return signInWithEmailAndPassword(auth, email, password);
+        
     }
     const getUpdateProfile = () => {
         return updateProfile(auth.currentUser, {
-            displayName: name
+            displayName: name,
+            photoURL: image 
         });
     }
     const getVerifyEmail = () => {
@@ -108,6 +110,8 @@ const useFirebase = () => {
         getResetPassword,
         isLoading,
         setIsLoading,
+        setImage,
+        image
     }
 }
 

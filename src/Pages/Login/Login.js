@@ -13,7 +13,7 @@ const Login = () => {
         setIsLogin(e.target.checked);
     }
 
-    const { getGoogleSignIn, getGithubSignIn, getEmailSignUp, getEmailSignIn, getName, getEmail, getPassword, getVerifyEmail, getUpdateProfile, getResetPassword, error, success, setUser, setError, setSuccess, setIsLoading } = useAuth();
+    const { getGoogleSignIn, getGithubSignIn, getEmailSignUp, getEmailSignIn, getName, getEmail, getPassword, getVerifyEmail, getUpdateProfile, getResetPassword, error, success, setUser, setError, setSuccess, setIsLoading ,user,setImage,image} = useAuth();
 
     const location = useLocation();
     const redirect_uri = location.state?.from || '/home';
@@ -41,6 +41,7 @@ const Login = () => {
 
         getGithubSignIn()
             .then(result => {
+                history.push(redirect_uri);
                 console.log(result.user);
                 setUser(result.user);
                 setSuccess('Signed-In successfully!');
@@ -85,6 +86,7 @@ const Login = () => {
                     console.log(result.user.emailVerified)
                     setUser(result.user);
                     setSuccess('Signed-In successfully!');
+                    history.push(redirect_uri);
                     setError('');
                 }
                 else {
@@ -173,6 +175,7 @@ const Login = () => {
                         </div>
                     </div>
                     <button type="submit" className="btn btn-primary shadow">{isLogin ? <i className="fas fa-user-plus"></i> : <i className="fas fa-sign-in-alt"></i>} Sign {isLogin ? 'up' : 'in'}</button>
+                    
                 </form>
             </div>
             <div className="d-flex justify-content-center align-items-center">

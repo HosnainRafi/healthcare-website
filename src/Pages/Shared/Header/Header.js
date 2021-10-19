@@ -8,6 +8,7 @@ import './Header.css'
 
 const Header = () => {
     const {user,logOut} = useAuth();
+    console.log(user);
     return (
         <div className="navbar-container">
             <Navbar collapseOnSelect expand="lg" className="navbar">
@@ -44,7 +45,7 @@ const Header = () => {
                             <Nav.Link as={Link} to="/login">Login</Nav.Link>
                         }
                         <Navbar.Text>
-                            Signed in as: {user?.displayName}
+                            Signed in as: <img src={user?.photoURL} width="50px" className="img-fluid" style={{borderRadius:"50%"}} alt="" /> { user?.displayName}
                         </Navbar.Text>
                     </Navbar.Collapse>
                 </Container>
