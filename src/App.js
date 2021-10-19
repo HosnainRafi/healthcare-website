@@ -1,5 +1,5 @@
 import './App.css';
-import { BrowserRouter as Router,Switch,Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Home from './Pages/Home/Home/Home';
 import Login from './Pages/Login/Login';
 import AboutUs from './Pages/AboutUs/AboutUs';
@@ -12,50 +12,53 @@ import Services from './Pages/Services/Services';
 import Doctors from './Pages/Doctors/Doctors';
 import DoctorDetails from './Pages/Doctors/DoctorDetails/DoctorDetails';
 import ServiceDetails from './Pages/Services/ServiceDetails/ServiceDetails';
+import AuthProvider from './Context/AuthProvider';
 
 function App() {
   return (
     <div>
-      <Router>
-        <Header></Header>
-        <Switch>
-          <Route exact path="/">
-            <Home></Home>
-          </Route>
-          <Route path="/home">
-            <Home></Home>
-          </Route>
-          <Route path="/services">
-            <Services></Services>
-          </Route>
-          <Route path="/service/:id">
-            <ServiceDetails></ServiceDetails>
-          </Route>
-          <Route path="/doctors">
-            <Doctors></Doctors>
-          </Route>
-          <Route path="/doctor/:id">
-            <DoctorDetails></DoctorDetails>
-          </Route>
+      <AuthProvider>
+        <Router>
+          <Header></Header>
+          <Switch>
+            <Route exact path="/">
+              <Home></Home>
+            </Route>
+            <Route path="/home">
+              <Home></Home>
+            </Route>
+            <Route path="/services">
+              <Services></Services>
+            </Route>
+            <Route path="/service/:id">
+              <ServiceDetails></ServiceDetails>
+            </Route>
+            <Route path="/doctors">
+              <Doctors></Doctors>
+            </Route>
+            <Route path="/doctor/:id">
+              <DoctorDetails></DoctorDetails>
+            </Route>
 
-          <Route path="/login">
-            <Login></Login>
-          </Route>
-          <Route path="/register">
-            <Register></Register>
-          </Route>
-          <Route exact path="/about">
-            <AboutUs></AboutUs>
-          </Route>
-          <Route exact path="/contact">
-            <ContactUs></ContactUs>
-          </Route>
-          <Route path="*">
-            <NotFound></NotFound>
-          </Route>
-        </Switch>
-        <Footer></Footer>
-      </Router>
+            <Route path="/login">
+              <Login></Login>
+            </Route>
+            <Route path="/register">
+              <Register></Register>
+            </Route>
+            <Route exact path="/about">
+              <AboutUs></AboutUs>
+            </Route>
+            <Route exact path="/contact">
+              <ContactUs></ContactUs>
+            </Route>
+            <Route path="*">
+              <NotFound></NotFound>
+            </Route>
+          </Switch>
+          <Footer></Footer>
+        </Router>
+      </AuthProvider>
     </div>
   );
 }
