@@ -1,141 +1,114 @@
-import React, { useEffect, useState } from 'react'; import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile, sendEmailVerification, onAuthStateChanged, signOut, sendPasswordResetEmail } from "firebase/auth";
-import initializeAuthentication from '../Pages/Login/Firebase/firebase.init';
+import { useState, useEffect } from "react";
+import { getAuth, signInWithPopup, onAuthStateChanged, signOut, GoogleAuthProvider, GithubAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile, sendEmailVerification, sendPasswordResetEmail } from 'firebase/auth';
+import initializeAuthentication from "../Pages/Login/Firebase/firebase.init";
+
 
 initializeAuthentication();
 
 const useFirebase = () => {
-    const auth = getAuth();
     const [user, setUser] = useState({});
     const [error, setError] = useState('');
-    const [email, setEmail] = useState('');
+    const [success, setSuccess] = useState('');
+
     const [name, setName] = useState('');
-    const [photo, setPhoto] = useState('');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [loading, setLoading] = useState(true);
 
+    const auth = getAuth();
+    const googleProvider = new GoogleAuthProvider();
+    const githubProvider = new GithubAuthProvider();
 
-    //Clear Error
+    // checking if initial state is getting user from useAuth(). if not then loading forever untill getting value
+    const [isLoading, setIsLoading] = useState(true);
+
+    const getGoogleSignIn = () => {
+        return signInWithPopup(auth, googleProvider);
+    }
+    const getGithubSignIn = () => {
+        return signInWithPopup(auth, githubProvider);
+    }
     useEffect(() => {
-        setTimeout(() => {
-            setError('');
-        }, 5000)
-    }, [error]);
-
-    //Email Sign In
-    const signInWithEmail = e => {
-        e.preventDefault();
-        return signInWithEmailAndPassword(auth, email, password)
-    }
-
-    //Set Name And Profile image
-    const setNameAndImage = () => {
-        updateProfile(auth.currentUser, {
-            displayName: name,
-            photoURL: photo,
-        })
-            .then(() => { })
-            .catch((error) => {
-                setError(error.message);
-            });
-    }
-
-    //Email Verify
-    const emailVerify = () => {
-        sendEmailVerification(auth.currentUser)
-            .then(() => {
-                alert(`An Email is sent to ${email}`);
-            });
-    }
-
-    //Get Current User Signed In
-    useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (user) => {
-            if (user) {
-                setUser(user)
-            } else {
-                setUser({})
+        const unsubscribed = onAuthStateChanged(auth, userInfo => {
+            if (userInfo && userInfo.emailVerified) {
+                setUser(userInfo);
             }
-            setLoading(false);
+            else {
+                setUser({});
+            }
+            setIsLoading(false);
         });
-        return unsubscribe;
-    }, [])
+        return () => unsubscribed;
 
-    //Sign Out
+    }, [auth]);
+
     const logOut = () => {
         signOut(auth)
             .then(() => {
-                setUser({})
-            }).catch((error) => {
-                setError(error.message)
-            });
+                setUser({});
+                setSuccess('Signed-Out successfully!');
+                setError('');
+            })
+            .catch(err => {
+                setError(err.code);
+                setSuccess('');
+            })
     }
 
-    //Reset Password
-    const passwordReset = e => {
-        e.preventDefault();
+    const getName = (e) => {
+        setName(e.target.value);
+    }
+    const getEmail = (e) => {
+        setEmail(e.target.value);
+    }
+    const getPassword = (e) => {
+        setPassword(e.target.value);
+    }
+    const getEmailSignUp = () => {
+        return createUserWithEmailAndPassword(auth, email, password);
+    }
+    const getEmailSignIn = () => {
+        return signInWithEmailAndPassword(auth, email, password);
+    }
+    const getUpdateProfile = () => {
+        return updateProfile(auth.currentUser, {
+            displayName: name
+        });
+    }
+    const getVerifyEmail = () => {
+        return sendEmailVerification(auth.currentUser);
+    }
+    const getResetPassword = () => {
         sendPasswordResetEmail(auth, email)
             .then(() => {
-                alert("A password Reset Email has been sent to your email");
+                setSuccess('Password Reset confirmation sent to your email successfully!');
+                setError('');
             })
-            .catch((error) => {
-                setError(error.message)
-            });
-    }
-
-
-    //Sign Up With Email Password
-    const signUp = e => {
-        e.preventDefault();
-        createUserWithEmailAndPassword(auth, email, password)
-            .then(result => {
-                setNameAndImage();
-                emailVerify();
-                alert('User has been Created Successfully')
+            .catch(err => {
+                setError(err.code);
+                setSuccess('');
             })
-            .catch((err) => {
-                setError(err.message);
-            });
     }
-
-
-    //GetName
-    const getName = e => {
-        setName(e?.target?.value);
-    }
-
-    //GetEmail
-    const getEmail = e => {
-        setEmail(e?.target?.value);
-    }
-
-    //GetPassword
-    const getPassword = e => {
-        setPassword(e?.target?.value);
-    }
-
-    //GetPhoto
-    const getphoto = e => {
-        setPhoto(e?.target?.value);
-    }
-
-
     return {
-        signInWithEmail,
-        logOut,
         user,
-        setUser,
         error,
+        success,
+        setUser,
         setError,
-        password,
-        setPassword,
-        signUp,
+        setSuccess,
+        getGoogleSignIn,
+        getGithubSignIn,
+        logOut,
         getName,
         getEmail,
         getPassword,
-        getphoto,
-        loading,
-        passwordReset,
+        getEmailSignUp,
+        getEmailSignIn,
+        getVerifyEmail,
+        getUpdateProfile,
+        getResetPassword,
+        isLoading,
+        setIsLoading,
     }
-};
+}
 
 export default useFirebase;

@@ -1,11 +1,13 @@
 import React from 'react';
-import { Container, Navbar } from 'react-bootstrap';
-import { NavLink } from 'react-router-dom';
+import { Container, Nav, Navbar } from 'react-bootstrap';
+import { Link, NavLink } from 'react-router-dom';
+import useAuth from '../../../Hooks/useAuth';
 import logo from '../../../images/logo2.png'
 import './Header.css'
 
 
 const Header = () => {
+    const {user,logOut} = useAuth();
     return (
         <div className="navbar-container">
             <Navbar collapseOnSelect expand="lg" className="navbar">
@@ -36,13 +38,13 @@ const Header = () => {
                             fontWeight: "bold",
                             color: "rgb(255, 173, 67)"
                         }} to="/contact">Contact Us</NavLink>
-                        {/* {user?.email ?
+                        {user?.email ?
                             <button className="btn btn-danger" onClick={logOut}>Logout</button>
                             :
                             <Nav.Link as={Link} to="/login">Login</Nav.Link>
-                        } */}
+                        }
                         <Navbar.Text>
-                            Signed in as: {/* {user?.displayName} */}
+                            Signed in as: {user?.displayName}
                         </Navbar.Text>
                     </Navbar.Collapse>
                 </Container>
